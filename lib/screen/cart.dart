@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class HomeScreen extends StatefulWidget {
+class CartScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _CartScreenState createState() => _CartScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
           width: double.infinity,
           child: WebView(
             javascriptMode: JavascriptMode.unrestricted,
-            initialUrl: "http://quarantinecravings.in/index.php",
+            initialUrl: "http://quarantinecravings.in/cart.php",
           ),
         ),
       ),

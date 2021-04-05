@@ -1,5 +1,9 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screen/cart.dart';
 import 'package:flutter_app/screen/homescreen.dart';
+import 'package:flutter_app/screen/myorder.dart';
+import 'package:flutter_app/screen/profile.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 void main() {
@@ -49,6 +53,39 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int pageIndex = 0;
+
+  final HomeScreen _homeScreen = HomeScreen();
+  final CartScreen _cartScreen = CartScreen();
+  final ProfileScreen _profileScreen = ProfileScreen();
+  final MyOrder _myOrder = MyOrder();
+  Widget _showPage = HomeScreen();
+  Widget _pageChooser(int page) {
+    switch (page) {
+      case 0:
+        return _homeScreen;
+        break;
+      case 1:
+        return _cartScreen;
+        break;
+      case 2:
+        return _profileScreen;
+        break;
+      case 3:
+        return _myOrder;
+      default:
+        return Container(
+          child: Center(
+            child: Text(
+              'No page found by page chooser',
+              style: TextStyle(
+                fontSize: 30,
+              ),
+            ),
+          ),
+        );
+    }
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -70,26 +107,45 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          height: double.infinity,
-          width: double.infinity,
-          child: WebView(
-            javascriptMode: JavascriptMode.unrestricted,
-            initialUrl: "http://quarantinecravings.in/",
+      bottomNavigationBar: CurvedNavigationBar(
+        index: 0,
+        color: Colors.white,
+        backgroundColor: Colors.orange,
+        buttonBackgroundColor: Colors.white,
+        items: [
+          Icon(
+            Icons.home,
+            size: 20,
+            color: Colors.black,
           ),
+          Icon(
+            Icons.card_travel,
+            size: 20,
+            color: Colors.black,
+          ),
+          Icon(
+            Icons.supervised_user_circle_sharp,
+            size: 20,
+            color: Colors.black,
+          ),
+          Icon(
+            Icons.bookmark_border_sharp,
+            size: 20,
+            color: Colors.black,
+          ),
+        ],
+        animationDuration: Duration(
+          microseconds: 200,
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add your onPressed code here!
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => HomeScreen()),
-          );
+        animationCurve: Curves.bounceInOut,
+        onTap: (int tappedIndex) {
+          setState(() {
+            _showPage = _pageChooser(tappedIndex);
+          });
         },
-        child: const Icon(Icons.home_rounded),
-        backgroundColor: Colors.deepOrange,
+      ),
+      body: Center(
+        child: _showPage,
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
     );

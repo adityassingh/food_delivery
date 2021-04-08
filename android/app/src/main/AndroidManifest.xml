@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.svce.flutter_app">
    <application
-        android:label="flutter_app"
-        android:icon="@mipmap/ic_launcher"
+        android:label="Quarantine Cravings"
+        android:icon="@mipmap/launcher_icon"
         android:usesCleartextTraffic="true"
        >
 

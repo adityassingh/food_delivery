@@ -4,6 +4,7 @@ import 'package:flutter_app/screen/cart.dart';
 import 'package:flutter_app/screen/homescreen.dart';
 import 'package:flutter_app/screen/myorder.dart';
 import 'package:flutter_app/screen/profile.dart';
+import 'package:flutter_app/screen/splashScreen.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 void main() {
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: SplashScreen(),
     );
   }
 }
@@ -107,31 +109,32 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      backgroundColor: Colors.white,
       bottomNavigationBar: CurvedNavigationBar(
         index: 0,
-        color: Colors.white,
-        backgroundColor: Colors.orange,
-        buttonBackgroundColor: Colors.white,
+        color: Color(0xff451D1E),
+        backgroundColor: Colors.white,
+        buttonBackgroundColor: Color(0xffFF3300),
         items: [
           Icon(
             Icons.home,
-            size: 20,
-            color: Colors.black,
+            size: 30,
+            color: Colors.white,
           ),
           Icon(
-            Icons.card_travel,
-            size: 20,
-            color: Colors.black,
+            Icons.shopping_cart,
+            size: 30,
+            color: Colors.white,
           ),
           Icon(
-            Icons.supervised_user_circle_sharp,
-            size: 20,
-            color: Colors.black,
+            Icons.person_rounded,
+            size: 30,
+            color: Colors.white,
           ),
           Icon(
-            Icons.bookmark_border_sharp,
-            size: 20,
-            color: Colors.black,
+            Icons.library_books_rounded,
+            size: 30,
+            color: Colors.white,
           ),
         ],
         animationDuration: Duration(
